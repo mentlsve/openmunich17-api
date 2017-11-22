@@ -1,13 +1,17 @@
 package main
 
-import "github.com/gin-gonic/gin"
+import (
+	"net/http"
 
-func main() {
-	r := gin.Default()
+	"github.com/gin-gonic/gin"
+)
+
+func init() {
+	r := gin.New()
 	r.GET("/ping", func(c *gin.Context) {
 		c.JSON(200, gin.H{
 			"message": "pong",
 		})
 	})
-	r.Run() // listen and serve on 0.0.0.0:8080
+	http.Handle("/",r)
 }
